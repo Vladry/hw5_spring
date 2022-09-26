@@ -1,0 +1,75 @@
+POST http://localhost:9000/accounts
+Content-Type: application/json
+
+{
+  "currency": 2,
+  "balance": 10,
+  "id": 1
+}
+###
+POST http://localhost:9000/accounts/put-amount
+Content-Type: application/json
+
+{
+  "from": null,
+  "to": null,
+  "accNumber": "1",
+  "amount": 10
+}
+###
+POST http://localhost:9000/accounts/draw-amount
+Content-Type: application/json
+
+{
+  "from": null,
+  "to": null,
+  "accNumber": "1",
+  "amount": 10
+}
+###
+POST http://localhost:9000/accounts/transfer-amount
+Content-Type: application/json
+
+{
+  "from": "1",
+  "to": "2",
+  "accNumber": null,
+  "amount": 10
+}
+###
+GET http://localhost:9000/accounts/1
+###
+GET http://localhost:9000/accounts/all
+
+###
+POST http://localhost:9000/accounts/all
+Content-Type: application/json
+
+{"list":
+[
+  {
+    "id": "1",
+    "number": 11,
+    "currency": 1,
+    "balance": 1.0,
+    "customer_id": 1
+  },
+  {
+    "id": "2",
+    "number": 22,
+    "currency": 2,
+    "balance": 2.0,
+    "customer_id": 2
+  },
+  {
+    "id": "3",
+    "number": 33,
+    "currency": 3,
+    "balance": 5.0,
+    "customer_id": 3
+  }
+]
+}
+
+###
+DELETE http://localhost:9000/accounts/3

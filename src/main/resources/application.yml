@@ -1,0 +1,75 @@
+# сейчас проект настроен на то, что будет выполняться hibernate-boot создание таблиц в БД
+# и, затем выполнятся файлы  schema.sql  и data.sql
+# для справки:
+#    https://www.baeldung.com/spring-boot-data-sql-and-schema-sql
+
+
+logging:
+  level:
+    root: info
+    com: error
+    org: error
+
+
+server:
+  port: 9000
+spring:
+  sql:
+    init:
+#      mode: never
+      mode: always
+  h2:
+    console:
+      enabled: true  # http://localhost:9000/h2-console/
+      settings:
+        trace: false
+---
+spring:
+  profiles:
+    active:  local
+---
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+
+      generate_statistics: true
+    generate-ddl: true
+    hibernate:
+#      ddl-auto: update
+      ddl-auto: create-drop
+  config:
+    activate:
+      on-profile: local
+---
+spring:
+#    для включения авто- заполнения БД, в физическую (не h2 базу) еще нужно добавить:
+  sql:
+    init:
+#      mode: never
+      mode: always
+  datasource:
+    url: jdbc:mysql://remotemysql.com:3306/MP3olDmrBo
+    username: MP3olDmrBo
+    password: kZPtQ0GR5H
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+      generate_ststistics: false
+    show-sql: false
+    hibernate:
+      # https://russianblogs.com/article/85481550836/    ,  https://docs.spring.io/spring-boot/docs/1.1.0.M1/reference/html/howto-database-initialization.html
+       ddl-auto: update
+  config:
+    activate:
+      on-profile: prod

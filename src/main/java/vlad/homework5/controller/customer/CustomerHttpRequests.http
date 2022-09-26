@@ -1,0 +1,89 @@
+POST http://localhost:9000/customers
+Content-Type: application/json
+
+{
+  "name": "Vlad2",
+  "email": "rvy@ukr.net",
+  "age": 50,
+  "password": "pwVlad2"
+}
+###
+
+PUT http://localhost:9000/update/customers
+Content-Type: application/json
+
+{ "id": 6,
+  "name": "Vlad",
+  "email": "rvy@ukr.net",
+  "age": 70,
+  "password": "pwVlad2"
+}
+###
+
+POST http://localhost:9000/customers/all
+Content-Type: application/json
+
+{
+"list":
+[
+  {
+    "name": "Vlad1",
+    "email": "rvy@ukr.net",
+    "age": 31,
+    "phoneNumber": "+380675094252",
+    "password": "pw1"
+  },
+  {
+    "name": "Vlad2",
+    "email": "rvy@ukr.net",
+    "age": 32,
+    "phoneNumber": "+38067509425",
+    "password": "pw2"
+  },
+  {
+    "name": "Vlad3",
+    "email": "rvy@ukr.net",
+    "age": 33,
+    "phoneNumber": "+3806750942520",
+    "password": "pw3"
+  }
+]
+}
+
+###
+GET http://localhost:9000/customers/all
+###
+GET http://localhost:9000/customers/4
+###
+DELETE http://localhost:9000/customers/all
+Content-Type: application/json
+
+{
+  "list":
+  [
+    {
+      "name": "Vlad1",
+      "email": "rvy@ukr.net",
+      "age": 31,
+      "phoneNumber": "+380675094252",
+      "password": "pw1"
+    },
+    {
+      "name": "Vlad2",
+      "email": "rvy@ukr.net",
+      "age": 32,
+      "phoneNumber": "+38067509425",
+      "password": "pw2"
+    },
+    {
+      "name": "Vlad3",
+      "email": "rvy@ukr.net",
+      "age": 33,
+      "phoneNumber": "+3806750942520",
+      "password": "pw3"
+    }
+  ]
+}
+###
+
+GET http://localhost:9000/customers/all-paged/?pagenumber=0&pagesize=3

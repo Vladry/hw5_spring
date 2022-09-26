@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
+>
+<head>
+    <title>Spring Security Login with email</title>
+</head>
+<body>
+
+<div sec:authorize="isAuthenticated()">
+    <a th:href="@{/logout}">Logout</a>
+</div>
+<a href="/register">Register</a>
+
+<!--  https://spring.io/guides/gs/handling-form-submission/-->
+<form th:action="@{/login}" method="post">
+    <div><label> login: <input type="text" name="username" th:value="*{suggestedUser}"/> </label></div>
+    <div><label> Password: <input type="text" name="password" th:value="*{suggestedPassword}"/> </label></div>
+    <div><input type="submit"  value="Sign In"/></div>
+</form>
+
+</body>
+</html>

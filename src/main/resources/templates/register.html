@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <title>Get registered</title>
+</head>
+<body>
+<div>
+    <h2>Get registered</h2>
+    <form action="/users/create2" method="post">
+        <label>login
+            <input name="login" type="text"
+                   placeholder="input new login"/></label><br/>
+        <label>password
+            <input name="password" type="text"
+                   placeholder="input new password"/></label><br/>
+        submit <Button type="submit">submit</Button>
+    </form>
+</div>
+</body>
+</html>

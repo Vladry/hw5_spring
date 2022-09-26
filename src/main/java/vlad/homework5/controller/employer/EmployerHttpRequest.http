@@ -1,0 +1,86 @@
+GET http://localhost:9000/employers/1
+###
+
+GET http://localhost:9000/employers/all
+###
+
+POST http://localhost:9000/employers
+Content-Type: application/json
+
+{
+  "name": "Ne",
+  "street": "St",
+  "address": "Kiev"
+}
+
+###
+POST http://localhost:9000/employers
+Content-Type: application/json
+
+{
+  "name": "New Venture_0",
+  "street": "Streetless",
+  "address": "Kiev"
+}
+###
+
+POST http://localhost:9000/employers/list
+Content-Type: application/json
+
+{"list":
+[
+{
+  "name": "New Venture_1",
+  "street": "Streetless",
+  "address": "Kiev"
+},
+{
+"name": "New Venture_2",
+"street": "Streetless",
+"address": "Kiev"
+}
+]
+}
+###
+DELETE http://localhost:9000/employers/1
+###
+DELETE http://localhost:9000/employers
+Content-Type: application/json
+
+{
+  "id": 3,
+  "createdDate": null,
+  "lastModifiedDate": null,
+  "name": "IT - world",
+  "street": "Privoz",
+  "address": "Odessa",
+  "customers_ids": null
+}
+###
+DELETE http://localhost:9000/employers/all
+###
+DELETE http://localhost:9000/employers/list
+Content-Type: application/json
+
+{ "list":
+[
+  {
+    "id": 4,
+    "createdDate": null,
+    "lastModifiedDate": null,
+    "name": "Venture IT Creations",
+    "street": "Brooklyn",
+    "address": "New-York",
+    "customers_ids": null
+  },
+  {
+    "id": 5,
+    "createdDate": null,
+    "lastModifiedDate": null,
+    "name": "Self-Employed",
+    "street": "Gaydara",
+    "address": "Kiev city",
+    "customers_ids": null
+  }
+]
+}
