@@ -1,6 +1,8 @@
 package vlad.homework5.service;
 
 import vlad.homework5.DAO.CustomerDao;
+import vlad.homework5.exception.DataNotFoundException;
+import vlad.homework5.exception.StoringDataException;
 import vlad.homework5.repository.CustomerJpaRepository;
 import vlad.homework5.domain.Currency;
 import vlad.homework5.domain.Customer;
@@ -27,16 +29,22 @@ public class CustomerService {
     }
 
 
-
-    public List<Customer> getListAllFromPaged(int pageNumber, int pageSize){
+    public List<Customer> getListAllFromPaged(int pageNumber, int pageSize) {
         Sort sort = Sort.by(new Sort.Order(Sort.Direction.ASC, "id"));
         Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
         return customerJpaRepository.findAll(pageable).toList();
-    };
+    }
+
+    ;
 
 
-    public void saveAll(List<Customer> entities) {
-        customerJpaRepository.saveAll(entities);
+    public void saveAll(List<Customer> entities) throws StoringDataException{
+        try {
+            customerJpaRepository.saveAll(entities);
+        } catch (Exception e) {
+            String exMessage = "in customerService.saveAll(List<Customer> entities)";
+            throw new StoringDataException(exMessage);
+        }
     }
 
     public void deleteAll(List<Customer> entities) {
@@ -48,18 +56,28 @@ public class CustomerService {
     }
 
 
-    public Page<Customer> getPagedAll(int pageNumber, int pageSize){
+    public Page<Customer> getPagedAll(int pageNumber, int pageSize) throws DataNotFoundException {
         Sort sort = Sort.by(new Sort.Order(Sort.Direction.ASC, "id"));
         Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
-        return customerJpaRepository.findAll(pageable);
+        try {
+            return customerJpaRepository.findAll(pageable);
+        } catch (Exception e) {
+            String message = "in customerService.findAll(pageable). " + e.getMessage();
+            throw new DataNotFoundException(message);
+        }
     }
 
     public Customer update(Customer customer) {
         return customerJpaRepository.save(customer);
     }
 
-    public void save(Customer c) {
-        customerJpaRepository.save(c);
+    public void save(Customer c) throws StoringDataException{
+        try {
+            customerJpaRepository.save(c);
+        } catch (Exception e) {
+            String exMessage = "in customerService.save(Customer c)";
+            throw new StoringDataException(exMessage);
+        }
     }
 
     public Customer createAccount(Currency currency, Long id) {
@@ -76,12 +94,22 @@ public class CustomerService {
 
 
     @Transactional(readOnly = true)
-    public List<Customer> findAll() {
-        return customerJpaRepository.findAll();
+    public List<Customer> findAll() throws DataNotFoundException {
+        try {
+            return customerJpaRepository.findAll();
+        } catch (Exception e) {
+            String message = "in customerService.findAll(). " + e.getMessage();
+            throw new DataNotFoundException(message);
+        }
     }
 
     @Transactional(readOnly = true)
-    public Customer getById(Long id) {
-        return customerJpaRepository.getById(id);
+    public Customer getById(Long id) throws DataNotFoundException {
+        try {
+            return customerJpaRepository.getById(id);
+        } catch (Exception e) {
+            String message = "in customerService.getById(id). " + e.getMessage();
+            throw new DataNotFoundException(message);
+        }
     }
 }

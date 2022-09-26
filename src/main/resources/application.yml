@@ -9,7 +9,7 @@ logging:
     root: info
     com: error
     org: error
-
+  file.name: appLog.log
 
 server:
   port: 9000

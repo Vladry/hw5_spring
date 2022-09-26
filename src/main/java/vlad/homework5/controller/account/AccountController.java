@@ -54,6 +54,7 @@ public class AccountController {
     @PostMapping("/draw-amount")
     public boolean drawAmount(
             @RequestBody AccountTransferDto dto) {
+        log.info("in drawAmount->");
         return accService.drawAmount(dto.getFrom(), dto.getAmount());
     }
 
@@ -61,6 +62,7 @@ public class AccountController {
     @PostMapping("/transfer-amount")
     public boolean transferAmount(
             @RequestBody AccountTransferDto dto) {
+        log.info("in transferAmount->");
         return accService.transferAmount(dto.getFrom(), dto.getTo(), dto.getAmount());
     }
 
@@ -70,6 +72,7 @@ public class AccountController {
     @PostMapping
     public Account create(
             @RequestBody AccountRequestDto a) {
+        log.info("in create->");
         Currency[] cur = Currency.values();
         Customer c;
         Account ac = null;
@@ -88,6 +91,7 @@ public class AccountController {
     @PostMapping("/all")
     public void saveAll(
             @RequestBody ListAccountRequestDto dtoR) {
+        log.info("in saveAll");
         List<AccountRequestDto> laR = dtoR.getList();
         List<Account> la = laR.stream().map(dto -> {
             Account a = accReqDtoMapper.convertToEntity(dto);
@@ -103,6 +107,7 @@ public class AccountController {
     @PreAuthorize("hasRole('USER')")
     @GetMapping("/all")
     public List<Account> findAll() {
+        log.info("in findAll->");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         log.info("authentication: " + auth);
         return accService.findAll();
@@ -112,6 +117,7 @@ public class AccountController {
     @GetMapping("/{id}")
     public Account getById(
             @PathVariable("id") Long id) {
+        log.info("in getById->");
         return accService.getById(id).orElse(null);
     }
 
@@ -121,6 +127,7 @@ public class AccountController {
     @DeleteMapping("/all")
     public void deleteAll(
             @RequestBody List<Account> la) {
+        log.info("in deleteAll ->");
         accService.deleteAll(la);
     }
 
@@ -129,6 +136,7 @@ public class AccountController {
     @DeleteMapping("/{id}")
     public void delete(
             @PathVariable("id") Long id) {
+        log.info("in delete ->");
         accService.deleteById(id);
     }
 

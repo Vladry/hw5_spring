@@ -45,6 +45,7 @@ public class EmployerController {
     @PreAuthorize("hasRole('USER')")
     @PostMapping("/employers/list")
     public void saveAll_fromSet(@Valid @RequestBody EnlistedEmployerDto lDto) {
+        log.info("in saveAll_fromSet ->");
         List<EmployerRequestDto> lEmp = lDto.getList();
         Set<Employer> le = lEmp.stream().map(reqDtoMapper::convertToEntity)
                 .collect(Collectors.toSet());
@@ -56,6 +57,7 @@ public class EmployerController {
     @PreAuthorize("hasRole('USER')")
     @GetMapping("/employers/all")
     public List<EmployerResponseDto> findAll() {
+        log.info("in findAll ->");
         return service.findAll().stream().map(respDtoMapper::convertToDto)
                 .collect(Collectors.toList());
     }
@@ -63,6 +65,7 @@ public class EmployerController {
     @PreAuthorize("hasRole('USER')")
     @GetMapping("/employers/{id}")
     public EmployerResponseDto getEmployerById(@PathVariable("id") Long id) {
+        log.info("in getEmployerById ->");
         Employer e = service.getById(id);
         return respDtoMapper.convertToDto(e);
     }

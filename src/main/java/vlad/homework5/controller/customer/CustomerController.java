@@ -38,6 +38,7 @@ public class CustomerController {
             @RequestParam("pagenumber") int pageNumber,
             @RequestParam("pagesize") int pageSize
     ) {
+        log.info("in getAllPaged ->");
 //        Page<Customer> custPage = customerService.getPagedAll(pageNumber, pageSize);
         List<Customer> custList = customerService.getListAllFromPaged(pageNumber, pageSize);
         List<CustomerResponseDto> custRsDtoList = custList.stream().map(facade::convertToDto)
@@ -59,6 +60,7 @@ public class CustomerController {
     @JsonView(Views.Public.class)
     @GetMapping("/customers/{id}")
     public CustomerResponseDto getById(@PathVariable("id") Long id) {
+        log.info("in getById ->");
         return facade.convertToDto(customerService.getById(id));
     }
 
@@ -68,6 +70,7 @@ public class CustomerController {
     @PostMapping("/customers")
     public Customer save(
             @Valid @RequestBody CustomerRequestDto c) {
+        log.info("in save ->");
         Customer cEntity = facade.convertToEntity(c);
         customerService.save(cEntity);
         return cEntity;
@@ -77,6 +80,7 @@ public class CustomerController {
     @PutMapping("update/customers")
     public Customer update(
             @RequestBody CustomerRequestDto c) {
+        log.info("in update ->");
         Customer cEntity = facade.convertToEntity(c);
         customerService.save(cEntity);
         return cEntity;
@@ -87,6 +91,7 @@ public class CustomerController {
     @PostMapping("/customers/all")
     public void saveAll(
             @Valid @RequestBody listCustomerDto<CustomerRequestDto> lDto) {
+        log.info("in saveAll ->");
         List<CustomerRequestDto> lc = lDto.getList();
         customerService.saveAll(lc.stream().map(facade::convertToEntity)
                 .collect(Collectors.toList()));
@@ -98,6 +103,7 @@ public class CustomerController {
     @DeleteMapping("/customers")
     public void delete(
             @RequestBody Customer c) {
+        log.info("in delete ->");
         customerService.delete(c);
     }
 
@@ -105,6 +111,7 @@ public class CustomerController {
     @DeleteMapping("/customers/all")
     public void deleteAll(
             @RequestBody listCustomerDto<CustomerRequestDto> lDto) {
+        log.info("in deleteAll ->");
         List<CustomerRequestDto> lc = lDto.getList();
         customerService.deleteAll(lc.stream().map(facade::convertToEntity)
                 .collect(Collectors.toList()));
@@ -113,6 +120,8 @@ public class CustomerController {
     @PreAuthorize("hasRole('USER')")
     @DeleteMapping("/customers/{id}")
     public void deleteById(@PathVariable("id") Long id) {
+
+        log.info("in deleteById ->");
         customerService.deleteById(id);
     }
 

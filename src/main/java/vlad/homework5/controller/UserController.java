@@ -23,7 +23,7 @@ public class UserController {
     @PostMapping("/users/create")
     public SysUser register(
             @RequestBody UserCredentialsRqDto credentials) {
-        log.info("in register-> ");
+        log.info("in userController.register-> ");
         String login = credentials.getLogin();
         SysUser sysUser = null;
         try {

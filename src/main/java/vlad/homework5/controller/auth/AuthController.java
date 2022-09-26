@@ -23,7 +23,8 @@ public class AuthController {
     }
 
     @GetMapping("/register")
-    public String register(Model model) {
+    public String renderRegisterForm(Model model) {
+        log.info("rendering register form ->");
         return "/register";
     }
 
@@ -55,7 +56,7 @@ public class AuthController {
             @RequestParam("login") String login,
             @RequestParam("password") String password) {
 
-        log.info("in register2-> ");
+        log.info("in AuthController.register2-> ");
         SysUser sysUser = null;
         try {
             sysUser = userService.findSecurityUserByUsername(login);

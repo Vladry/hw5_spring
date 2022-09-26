@@ -1,0 +1,32 @@
+2022-09-26 21:29:09.126  INFO 7136 --- [restartedMain] vlad.homework5.Application               : Starting Application using Java 17 on DESKTOP-R98ATH4 with PID 7136 (C:\Users\Vlad\IdeaProjects\hw5_spring\target\classes started by Vlad in C:\Users\Vlad\IdeaProjects\hw5_spring)
+2022-09-26 21:29:09.127  INFO 7136 --- [restartedMain] vlad.homework5.Application               : The following profiles are active: local
+2022-09-26 21:29:13.078  INFO 7136 --- [restartedMain] vlad.homework5.Application               : Started Application in 4.356 seconds (JVM running for 4.962)
+2022-09-26 21:30:07.527  INFO 7136 --- [http-nio-9000-exec-3] v.h.controller.auth.AuthController       : in register ->
+2022-09-26 21:30:12.042  INFO 7136 --- [http-nio-9000-exec-4] v.h.controller.auth.AuthController       : in register2-> 
+2022-09-26 21:30:12.174  INFO 7136 --- [http-nio-9000-exec-4] v.h.controller.auth.AuthController       : requested data not found: in findSecurityUserByUsername(String name). User Not found by username
+2022-09-26 21:30:16.083  INFO 7136 --- [http-nio-9000-exec-6] v.h.controller.auth.AuthController       : in @GetMapping("/login") ->
+2022-09-26 21:31:08.946  INFO 7136 --- [http-nio-9000-exec-8] v.h.controller.auth.AuthController       : in register ->
+2022-09-26 21:31:13.761  INFO 7136 --- [http-nio-9000-exec-9] v.h.controller.auth.AuthController       : in register2-> 
+2022-09-26 21:31:13.763  INFO 7136 --- [http-nio-9000-exec-9] v.h.controller.auth.AuthController       : requested data not found: in findSecurityUserByUsername(String name). User Not found by username
+2022-09-26 21:31:29.800  INFO 7136 --- [http-nio-9000-exec-10] v.homework5.controller.UserController    : in register-> 
+2022-09-26 21:45:34.744  INFO 14736 --- [restartedMain] vlad.homework5.Application               : Starting Application using Java 17 on DESKTOP-R98ATH4 with PID 14736 (C:\Users\Vlad\IdeaProjects\hw5_spring\target\classes started by Vlad in C:\Users\Vlad\IdeaProjects\hw5_spring)
+2022-09-26 21:45:34.745  INFO 14736 --- [restartedMain] vlad.homework5.Application               : The following profiles are active: local
+2022-09-26 21:45:38.350  INFO 14736 --- [restartedMain] vlad.homework5.Application               : Started Application in 3.983 seconds (JVM running for 4.568)
+2022-09-26 21:45:47.531  INFO 14736 --- [http-nio-9000-exec-1] v.h.controller.auth.AuthController       : in register ->
+2022-09-26 21:46:02.875  INFO 14736 --- [http-nio-9000-exec-2] v.h.controller.auth.AuthController       : in register2-> 
+2022-09-26 21:46:02.972  INFO 14736 --- [http-nio-9000-exec-2] v.h.controller.auth.AuthController       : DataNotFoundException: in findSecurityUserByUsername(String name). User Not found by username
+2022-09-26 21:47:09.023  INFO 14736 --- [http-nio-9000-exec-5] v.homework5.controller.UserController    : in register-> 
+2022-09-26 21:47:19.461  INFO 14736 --- [http-nio-9000-exec-6] v.h.controller.auth.AuthController       : in register ->
+2022-09-26 21:47:23.170  INFO 14736 --- [http-nio-9000-exec-7] v.h.controller.auth.AuthController       : in register2-> 
+2022-09-26 21:47:23.172  INFO 14736 --- [http-nio-9000-exec-7] v.h.controller.auth.AuthController       : DataNotFoundException: in findSecurityUserByUsername(String name). User Not found by username
+2022-09-26 21:52:39.269  INFO 13924 --- [restartedMain] vlad.homework5.Application               : Starting Application using Java 17 on DESKTOP-R98ATH4 with PID 13924 (C:\Users\Vlad\IdeaProjects\hw5_spring\target\classes started by Vlad in C:\Users\Vlad\IdeaProjects\hw5_spring)
+2022-09-26 21:52:39.270  INFO 13924 --- [restartedMain] vlad.homework5.Application               : The following profiles are active: local
+2022-09-26 21:52:42.833  INFO 13924 --- [restartedMain] vlad.homework5.Application               : Started Application in 3.948 seconds (JVM running for 4.551)
+2022-09-26 21:53:16.649  INFO 13924 --- [http-nio-9000-exec-1] v.h.controller.auth.AuthController       : in register ->
+2022-09-26 21:55:09.884  INFO 13924 --- [http-nio-9000-exec-4] v.h.controller.auth.AuthController       : in register2-> 
+2022-09-26 21:55:09.986  INFO 13924 --- [http-nio-9000-exec-4] v.h.controller.auth.AuthController       : DataNotFoundException: in findSecurityUserByUsername(String name). User Not found by username
+2022-09-26 21:59:54.568  INFO 17008 --- [restartedMain] vlad.homework5.Application               : Starting Application using Java 17 on DESKTOP-R98ATH4 with PID 17008 (C:\Users\Vlad\IdeaProjects\hw5_spring\target\classes started by Vlad in C:\Users\Vlad\IdeaProjects\hw5_spring)
+2022-09-26 21:59:54.568  INFO 17008 --- [restartedMain] vlad.homework5.Application               : The following profiles are active: local
+2022-09-26 21:59:58.122  INFO 17008 --- [restartedMain] vlad.homework5.Application               : Started Application in 3.929 seconds (JVM running for 4.511)
+2022-09-26 22:00:08.960  INFO 17008 --- [http-nio-9000-exec-1] v.h.controller.auth.AuthController       : rendering register form ->
+2022-09-26 22:00:11.981  INFO 17008 --- [http-nio-9000-exec-2] v.h.controller.auth.AuthController       : in AuthController.register2-> 
