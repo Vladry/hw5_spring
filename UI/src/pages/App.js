@@ -6,7 +6,8 @@ import CreateAccount from "../components/CreateAccount";
 import CreateSystemUser from "../components/CreateSystemUser";
 import AppRouts from "./AppRouts";
 import SockJS from "sockjs-client";
-import Stomp from "stomp-websocket";
+// import Stomp from "stomp-websocket";     - тоже хорошо работало, но начало выбивать коннекшн...
+import Stomp from "stompjs";
 import WebSocketBox from "../components/WebSocketBox";
 
 let stompClient =null;
