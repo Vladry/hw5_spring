@@ -11,25 +11,25 @@ import vlad.homework5.exception.StoringDataException;
 
 @Slf4j
 @org.springframework.web.bind.annotation.ControllerAdvice
-@RequestMapping(produces = "application/json")
+/*@RequestMapping(produces = "application/json")  */
 public class ControllerAdvice {
 
     @ExceptionHandler(value = {DataNotFoundException.class})
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+//    @ResponseStatus(HttpStatus.NOT_FOUND)
     public void handleDataNotFoundExceptions(Throwable ex) {
         log.warn("data not found" + ex.getMessage());
     }
 
     @ExceptionHandler(value = {StoringDataException.class})
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public void handleDataNotStoredExceptions(Throwable ex) {
         log.error("data persist error: " + ex.getMessage());
     }
 
     @ExceptionHandler(value = Exception.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+//    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public void handleAllOtherExceptions(Exception ex) {
-        log.error("unspecified error." + ex.getMessage());
+        log.error("handleAllOtherExceptions-> unspecified error." + ex.getMessage());
     }
 
 

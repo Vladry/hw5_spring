@@ -16,8 +16,10 @@ import vlad.homework5.service.dtoMappers.AccountRequestDtoMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
+import vlad.homework5.websocket.NotifyService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -29,13 +31,16 @@ public class AccountController {
     private final AccountService accService;
     private final CustomerService customerService;
     private final AccountRequestDtoMapper accReqDtoMapper;
+    private final NotifyService notifyService;
 
     public AccountController(AccountService accService,
                              CustomerService customerService,
-                             AccountRequestDtoMapper accReqDtoMapper) {
+                             AccountRequestDtoMapper accReqDtoMapper,
+                             NotifyService notifyService) {
         this.accService = accService;
         this.customerService = customerService;
         this.accReqDtoMapper = accReqDtoMapper;
+        this.notifyService = notifyService;
     }
 
 
@@ -47,6 +52,8 @@ public class AccountController {
         log.info("controller putAbount()-> ");
         boolean res = accService.putAmount(dto.getTo(), dto.getAmount());
         log.info("res: " + res);
+        Optional<Account> account = accService.getById(dto.getId());
+        account.ifPresent(notifyService::notifier);
         return res;
     }
 
@@ -55,7 +62,10 @@ public class AccountController {
     public boolean drawAmount(
             @RequestBody AccountTransferDto dto) {
         log.info("in drawAmount->");
-        return accService.drawAmount(dto.getFrom(), dto.getAmount());
+        boolean success = accService.drawAmount(dto.getFrom(), dto.getAmount());
+        Optional<Account> account = accService.getById(dto.getId());
+        account.ifPresent(notifyService::notifier);
+        return success;
     }
 
     @PreAuthorize("hasRole('USER')")
@@ -63,7 +73,12 @@ public class AccountController {
     public boolean transferAmount(
             @RequestBody AccountTransferDto dto) {
         log.info("in transferAmount->");
-        return accService.transferAmount(dto.getFrom(), dto.getTo(), dto.getAmount());
+        boolean success = accService.transferAmount(dto.getFrom(), dto.getTo(), dto.getAmount());
+        Optional<Account> account = accService.getById(Long.valueOf(dto.getFrom()));
+        account.ifPresent(notifyService::notifier);
+        account = accService.getById(Long.valueOf(dto.getTo()));
+        account.ifPresent(notifyService::notifier);
+        return success;
     }
 
 
@@ -72,19 +87,22 @@ public class AccountController {
     @PostMapping
     public Account create(
             @RequestBody AccountRequestDto a) {
-        log.info("in create->");
-        Currency[] cur = Currency.values();
-        Customer c;
-        Account ac = null;
+        System.out.println("a: " + a);
+        System.out.println("a.getCustomer_id(): " + a.getCustomerId());
+        log.info("in accountController.create->");
+        Currency curr = Currency.values()[a.getCurrency()];
+        Customer cust;
+        Account acc = null;
         try {
-            c = customerService.getById(a.getId());
-            ac = new Account(cur[a.getCurrency()], a.getBalance(), c);
-            accService.save(ac);
+            cust = customerService.getById(a.getCustomerId());
+            acc = new Account(curr, a.getBalance(), cust);
+            accService.save(acc);
+            notifyService.notifier(acc);
         } catch (Exception e) {
             e.printStackTrace();
             log.info("No such customer in database!");
         }
-        return ac;
+        return acc;
     }
 
     @PreAuthorize("hasRole('USER')")
@@ -96,6 +114,7 @@ public class AccountController {
         List<Account> la = laR.stream().map(dto -> {
             Account a = accReqDtoMapper.convertToEntity(dto);
             log.info("in controller, account: " + a);
+            notifyService.notifier(a);
             accReqDtoMapper.decorateEntity(a, dto);
             return a;
         }).collect(Collectors.toList());

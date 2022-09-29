@@ -11,38 +11,35 @@ const CreateCustomer = () => {
     const submit = (event) => {
         event.preventDefault();
 
-        const name = inputName.current.value;
-        const email = inputEmail.current.value;
-        const age = inputAge.current.value;
+        const customerData = {
+            name:  inputName.current.value,
+            email: inputEmail.current.value,
+            age:   inputAge.current.value
+        } ;
 
         const url = "/customers";
 
         fetch(url, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(
-                {
-                    name: name,
-                    email: email,
-                    age: age
-                }
-            )
-        }).then(r => r.json().then(r => console.log(r)));
-
-        console.log(`name: ${name}, email: ${email}, age: ${age}`);
+            body: JSON.stringify(customerData)
+        }).then(r => r.json().then(r => console.log("successful fetch to: /customers, method= POSTS -> \n \t " +
+            "отправились данные по вновь-созданному customer:", r)));
     }
 
 
     return (
-        <form onSubmit={submit}>
-            <label>name
-                <input ref={inputName} name="name" type="text" placeholder="input customer name"/></label><br/>
-            <label>email
-                <input ref={inputEmail} name="email" type="text" placeholder="input customer email"/></label><br/>
-            <label>age  
-                <input ref={inputAge} name="age" type="number" placeholder="input customer age"/></label><br/>
-            submit <Button type="submit" color="primary" variant="contained">submit</Button>
-        </form>
+        <><h3>Создать нового Customer <span style={{fontSize: 10}}> (бери по дефолту!  )</span>:</h3>
+            <form onSubmit={submit}>
+                <label>name:
+                    <input ref={inputName} name="name" type="text" defaultValue={"vlad"} placeholder="input customer name"/></label><br/>
+                <label>email:
+                    <input ref={inputEmail} name="email" type="text" defaultValue={"vlad@ukr.net"} placeholder="input customer email"/></label><br/>
+                <label>age:
+                    <input ref={inputAge} name="age" type="number" defaultValue="40" placeholder="input customer age"/></label><br/>
+                submit <Button type="submit" color="primary" variant="contained">submit</Button>
+            </form>
+        </>
     );
 };
 

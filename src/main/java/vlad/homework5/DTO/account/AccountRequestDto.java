@@ -15,12 +15,12 @@ public class AccountRequestDto extends AbstractEntity {
 
     @Min(0)
     @Max(4)
-    private int currency;
+    private Integer currency;
     @Min(0)
     private Double balance;
     @Min(1)
-    private Long customer_id;
-    private String account_id;
+    private Long customerId;
+
     private String number;
 }
 

@@ -1,5 +1,6 @@
 package vlad.homework5.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,7 @@ public class Account extends AbstractEntity {
     Currency currency;
     Double balance;
 
+    @JsonIgnore //TODO убрать эту строку, потом написав правильный accountRsDTO с раскруткой по customer-у
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     Customer customer;
@@ -62,6 +64,14 @@ public class Account extends AbstractEntity {
 
     @Override
     public String toString() {
-        return null;
+        return "account owner:\t\t" +
+                this.customer.getName() + "\n" +
+                "acc.number:\t\t" +
+                this.number  + "\n" +
+                "currency:\t\t" +
+                this.currency  + "\n" +
+                "balance:\t\t" +
+                this.balance;
     }
+
 }

@@ -19,10 +19,10 @@ public class UserService {
 //    }
 
     public SysUser save(SysUser user) throws StoringDataException {
-        System.out.println("in userService.save(SysUser user)-> ");
+//        System.out.println("in userService.save(SysUser user)-> ");
         SysUser u = null;
         try {
-            System.out.println("trying to register a user");
+//            System.out.println("trying to register a user");
             u = userRepository.save(user);
         } catch (Exception e) {
             System.out.println("in catch Exception: error registering a user!  Check that a StoringDataException must be thrown!");

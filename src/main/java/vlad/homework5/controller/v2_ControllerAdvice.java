@@ -11,7 +11,7 @@ import vlad.homework5.exception.DataNotFoundException;
 import vlad.homework5.exception.StoringDataException;
 
 @Slf4j
-@org.springframework.web.bind.annotation.ControllerAdvice
+//@org.springframework.web.bind.annotation.ControllerAdvice
 @RequestMapping(produces = "application/json")
 public class v2_ControllerAdvice {
 

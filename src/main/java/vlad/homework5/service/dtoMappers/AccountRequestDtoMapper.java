@@ -20,7 +20,7 @@ public class AccountRequestDtoMapper extends DtoMapperFacade<Account, AccountReq
 
     public void decorateEntity(final Account account, final AccountRequestDto dto){
         try {
-            Customer c = customerService.getById(dto.getCustomer_id());
+            Customer c = customerService.getById(dto.getCustomerId());
             account.setCustomer(c);
             Currency[] cur = Currency.values();
             Currency cU = cur[dto.getCurrency()];
